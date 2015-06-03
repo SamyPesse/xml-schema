@@ -137,9 +137,62 @@ var xml = xmlSchema.create(
 );
 ```
 
-### Options
+### Options for schemas
 
-- **version**: xml version to append in the header (default is `"1.0"`)
-- **encoding**: encoding value to append in the header (default is `"UTF-8"`)
-- **standalone**: (default is `true`)
-- **pretty**: If true, it will return a pretty xml string (default is `false`)
+```js
+{
+    // Name of the element tag
+    // If null, it will use the name of the fields
+    tag: "myTag",
+
+    // Map of sub-elements defined by schema
+    fields: {
+        // Key can be the path of the property to get (eg: "a[0].b.c")
+        "key": anotherSchema
+    },
+
+    // Map of attributes
+    // It works like "fields", options 'transform', 'default' are also available
+    attributes: {
+        "key2": {
+            name: "attributeName",
+            default: "attributeValue"
+        }
+    },
+
+    // Map basic value (number, string, boolean) to object for the schema
+    // This is usefull to make it easier to define both simple and complex data set
+    map: {
+        to: "key"
+    },
+
+    // Default value for the schema (default is undefined)
+    default: "some stuff",
+
+    // Transformation function for the value (default is identity)
+    transform: function(v) { return v; },
+
+    // If true, Don't escape value when appened (default is false)
+    raw: false,
+
+    // If true, Append the resulting value as text (default is true)
+    text: true
+}
+```
+
+### Options for `xmlSchema`
+
+```js
+{
+    // xml version to append in the header
+    "versions":"1.0",
+
+    // encoding value to append in the header
+    "encoding": "UTF-8",
+
+    "standalone": false,
+
+    // If true, it will return a pretty xml string
+    "pretty": true
+}
+```

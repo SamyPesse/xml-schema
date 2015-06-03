@@ -1,0 +1,26 @@
+{
+    "name": "xml-schema",
+    "version": "0.0.0",
+    "main": "lib/index.js",
+    "author": "Samy Pessé <samypesse@gmail.com>",
+    "description": "Library to generate XML from JavaScript schemas",
+    "bugs": "https://github.com/SamyPesse/xml-schema/issues",
+    "engines": {
+        "node": ">=0.6"
+    },
+    "dependencies": {
+        "lodash": "^3.9.3",
+        "xmlbuilder": "2.4.5"
+    },
+    "devDependencies": {
+        "mocha": "2.2.1",
+        "should": "5.2.0"
+    },
+    "scripts": {
+        "test": "node_modules/.bin/mocha --reporter spec --timeout 15000"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/SamyPesse/xml-schema.git"
+    }
+}

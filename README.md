@@ -148,6 +148,7 @@ var xml = xmlSchema.create(
     // Map of sub-elements defined by schema
     fields: {
         // Key can be the path of the property to get (eg: "a[0].b.c")
+        // If "$", then the value is the one passed to the schema
         "key": anotherSchema
     },
 

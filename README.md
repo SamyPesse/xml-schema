@@ -40,13 +40,13 @@ var AUTHOR = {
 
 var LINK = {
     tag: 'link',
-    fields: {
+    attributes: {
         href: {},
         rel: {},
         type: {}
     },
     map: {
-        href: 'name'
+        to: 'href'
     }
 };
 
@@ -144,6 +144,9 @@ var xml = xmlSchema.create(
     // Name of the element tag
     // If null, it will use the name of the fields
     tag: "myTag",
+
+    // Use sub-value as text/raw node (default is undefined)
+    inner: undefined,
 
     // Map of sub-elements defined by schema
     fields: {

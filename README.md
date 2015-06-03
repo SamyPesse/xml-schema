@@ -1,4 +1,4 @@
-# ONIX for Books
+# xml-schema
 
 [![NPM version](https://badge.fury.io/js/xml-schema.svg)](http://badge.fury.io/js/xml-schema)
 [![Build Status](https://travis-ci.org/SamyPesse/xml-schema.png?branch=master)](https://travis-ci.org/SamyPesse/xml-schema)

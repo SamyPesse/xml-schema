@@ -11,15 +11,13 @@ Library to translate JSON objects to XML using predefined JavaScript schemas.
 $ npm install xml-schema
 ```
 
-### How to use it?
-
-Example to generate ATOM feed
+### Example to generate an ATOM feed
 
 ```js
 var xmlSchema = require("xml-schema");
 ```
 
-Define the JavaScript schema for a ATOM feed:
+Define the JavaScript schemas for the ATOM feed:
 
 ```js
 var DATE = {
@@ -90,7 +88,7 @@ var FEED = {
 };
 ```
 
-Then simply convert JSON into XML based on defined schema:
+Convert JSON into XML based on the previously defined schema:
 
 ```js
 var xml = xmlSchema.create(FEED, {
@@ -125,7 +123,6 @@ var xml = xmlSchema.create(FEED, {
             content: "<p>This is the entry content.</p>"
         }
     ]
-
 }, {
     version: '1.0',
     encoding: 'UTF-8'

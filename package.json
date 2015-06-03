@@ -5,6 +5,8 @@
     "author": "Samy Pessé <samypesse@gmail.com>",
     "description": "Library to generate XML from JavaScript schemas",
     "bugs": "https://github.com/SamyPesse/xml-schema/issues",
+    "license": "Apache-2.0",
+    "keywords": ["xml", "schema", "atom"],
     "engines": {
         "node": ">=0.6"
     },

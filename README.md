@@ -91,42 +91,55 @@ var FEED = {
 Convert JSON into XML based on the previously defined schema:
 
 ```js
-var xml = xmlSchema.create(FEED, {
-    title: "Example Feed",
-    links: [
-        {
-            href: "http://example.org/feed/",
-            ref: "self"
-        },
-        "http://example.org/"
-    ],
-    entries: [
-        {
-            title: "Atom-Powered Robots Run Amok",
-            updated: new Date(2015, 01, 15),
-            links: [
-                "http://example.org/2003/12/13/atom03",
-                {
-                    rel: "alternate",
-                    type: "text/html",
-                    href: "http://example.org/2003/12/13/atom03.html"
-                },
-                {
-                    rel: "edit",
-                    href: "http://example.org/2003/12/13/atom03/edit"
-                }
-            ],
-            author: {
-                name: "John Doe",
-                email: "johndoe@example.com"
+var xml = xmlSchema.create(
+    // Schema to use for the xml
+    FEED,
+
+    // Data to process
+    {
+        title: "Example Feed",
+        links: [
+            {
+                href: "http://example.org/feed/",
+                ref: "self"
             },
-            content: "<p>This is the entry content.</p>"
-        }
-    ]
-}, {
-    version: '1.0',
-    encoding: 'UTF-8'
-});
+            "http://example.org/"
+        ],
+        entries: [
+            {
+                title: "Atom-Powered Robots Run Amok",
+                updated: new Date(2015, 01, 15),
+                links: [
+                    "http://example.org/2003/12/13/atom03",
+                    {
+                        rel: "alternate",
+                        type: "text/html",
+                        href: "http://example.org/2003/12/13/atom03.html"
+                    },
+                    {
+                        rel: "edit",
+                        href: "http://example.org/2003/12/13/atom03/edit"
+                    }
+                ],
+                author: {
+                    name: "John Doe",
+                    email: "johndoe@example.com"
+                },
+                content: "<p>This is the entry content.</p>"
+            }
+        ]
+    },
+    // Options for xmlSchema
+    {
+        version: '1.0',
+        encoding: 'UTF-8'
+    }
+);
 ```
 
+### Options
 
+- **version**: xml version to append in the header (default is `"1.0"`)
+- **encoding**: encoding value to append in the header (default is `"UTF-8"`)
+- **standalone**: (default is `true`)
+- **pretty**: If true, it will return a pretty xml string (default is `false`)

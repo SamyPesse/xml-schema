@@ -5,6 +5,8 @@
 
 Library to translate JSON objects to XML using predefined JavaScript schemas.
 
+For example, This library is used in [opds-builder](https://github.com/GitbookIO/opds-builder) and [onix-builder](https://github.com/GitbookIO/onix-builder).
+
 ### Installation
 
 ```

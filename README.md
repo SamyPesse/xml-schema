@@ -3,7 +3,7 @@
 [![NPM version](https://badge.fury.io/js/xml-schema.svg)](http://badge.fury.io/js/xml-schema)
 [![Build Status](https://travis-ci.org/SamyPesse/xml-schema.png?branch=master)](https://travis-ci.org/SamyPesse/xml-schema)
 
-Library to translate JSON objects to XML using predefined JavaScript schemas.
+Library to translate JSON to XML (and XML to JSON) using predefined JavaScript schemas.
 
 For example, This library is used in [opds-builder](https://github.com/GitbookIO/opds-builder) and [onix-builder](https://github.com/GitbookIO/onix-builder).
 

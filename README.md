@@ -13,11 +13,22 @@ For example, This library is used in [opds-builder](https://github.com/GitbookIO
 $ npm install xml-schema
 ```
 
-### Example to generate an ATOM feed
+### API
 
 ```js
-var xmlSchema = require("xml-schema");
+var XMLSchema = require("xml-schema");
+
+// Create a XML Schema
+var xmlSchema = new XMLSchema(schema);
+
+// Generate a XML string
+var xml = xmlSchema.generate(data, options);
+
+// Parse a XML string to some data
+var data = xmlSchema.parse(xml);
 ```
+
+### Example to generate an ATOM feed
 
 Define the JavaScript schemas for the ATOM feed:
 
@@ -90,53 +101,59 @@ var FEED = {
 };
 ```
 
+Initialize your XML schema processor:
+
+```js
+var xmlSchema = new XMLSchema(FEED);
+```
+
 Convert JSON into XML based on the previously defined schema:
 
 ```js
-var xml = xmlSchema.create(
-    // Schema to use for the xml
-    FEED,
-
-    // Data to process
-    {
-        title: "Example Feed",
-        links: [
-            {
-                href: "http://example.org/feed/",
-                ref: "self"
-            },
-            "http://example.org/"
-        ],
-        entries: [
-            {
-                title: "Atom-Powered Robots Run Amok",
-                updated: new Date(2015, 01, 15),
-                links: [
-                    "http://example.org/2003/12/13/atom03",
-                    {
-                        rel: "alternate",
-                        type: "text/html",
-                        href: "http://example.org/2003/12/13/atom03.html"
-                    },
-                    {
-                        rel: "edit",
-                        href: "http://example.org/2003/12/13/atom03/edit"
-                    }
-                ],
-                author: {
-                    name: "John Doe",
-                    email: "johndoe@example.com"
+var xml = xmlSchema.generate({
+    title: "Example Feed",
+    links: [
+        {
+            href: "http://example.org/feed/",
+            ref: "self"
+        },
+        "http://example.org/"
+    ],
+    entries: [
+        {
+            title: "Atom-Powered Robots Run Amok",
+            updated: new Date(2015, 01, 15),
+            links: [
+                "http://example.org/2003/12/13/atom03",
+                {
+                    rel: "alternate",
+                    type: "text/html",
+                    href: "http://example.org/2003/12/13/atom03.html"
                 },
-                content: "<p>This is the entry content.</p>"
-            }
-        ]
-    },
-    // Options for xmlSchema
-    {
-        version: '1.0',
-        encoding: 'UTF-8'
-    }
-);
+                {
+                    rel: "edit",
+                    href: "http://example.org/2003/12/13/atom03/edit"
+                }
+            ],
+            author: {
+                name: "John Doe",
+                email: "johndoe@example.com"
+            },
+            content: "<p>This is the entry content.</p>"
+        }
+    ]
+},
+// Options for generation
+{
+    version: '1.0',
+    encoding: 'UTF-8'
+});
+```
+
+Or parse some xml feed into a JS object:
+
+```js
+var data = xmlSchema.parse(xml);
 ```
 
 ### Options for schemas
@@ -186,7 +203,7 @@ var xml = xmlSchema.create(
 }
 ```
 
-### Options for `xmlSchema`
+### Options for generation
 
 ```js
 {

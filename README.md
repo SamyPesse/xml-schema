@@ -76,7 +76,10 @@ var data = xmlSchema.parse(xml);
     raw: false,
 
     // If true, Append the resulting value as text (default is true)
-    text: true
+    text: true,
+
+    // If true: parse it as an array
+    array: false
 }
 ```
 

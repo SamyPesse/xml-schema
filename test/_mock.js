@@ -1,5 +1,5 @@
 var should = require('should');
-var xmlSchema = require('../');
+var XMLSchema = require('../');
 
-GLOBAL.xmlSchema = xmlSchema;
+GLOBAL.XMLSchema = XMLSchema;
 

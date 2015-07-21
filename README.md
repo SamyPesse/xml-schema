@@ -13,11 +13,96 @@ For example, This library is used in [opds-builder](https://github.com/GitbookIO
 $ npm install xml-schema
 ```
 
-### Example to generate an ATOM feed
+### API
 
 ```js
-var xmlSchema = require("xml-schema");
+var XMLSchema = require("xml-schema");
+
+// Create a XML Schema
+var xmlSchema = new XMLSchema(schema);
+
+// Generate a XML string
+var xml = xmlSchema.generate(data, options);
+
+// Parse a XML string to some data
+var data = xmlSchema.parse(xml);
 ```
+
+### Definition of schemas
+
+```js
+{
+    // Name of the element tag
+    // If null, it will use the name of the fields
+    tag: "myTag",
+
+    // Use sub-value as text/raw node (default is undefined)
+    inner: undefined,
+
+    // Map of sub-elements defined by schema
+    fields: {
+        // Key can be the path of the property to get (eg: "a[0].b.c")
+        // If "$", then the value is the one passed to the schema
+        "key": anotherSchema
+    },
+
+    // Map of attributes
+    // It works like "fields", options 'transform', 'default' are also available
+    attributes: {
+        "key2": {
+            name: "attributeName",
+            default: "attributeValue",
+
+            // Transform value
+            transform: function(v) { return v; },
+            untransform: function(v) { return v; }
+        }
+    },
+
+    // Map basic value (number, string, boolean) to object for the schema
+    // This is usefull to make it easier to define both simple and complex data set
+    map: {
+        to: "key"
+    },
+
+    // Default value for the schema (default is undefined)
+    default: "some stuff",
+
+    // Transformation function for the value (default is identity)
+    transform: function(v) { return v; },
+    untransform: function(v) { return v; },
+
+    // If true, Don't escape value when appened (default is false)
+    raw: false,
+
+    // If true, Append the resulting value as text (default is true)
+    text: true,
+
+    // If true: parse it as an array
+    array: false
+}
+```
+
+### Generation
+
+Options can be passed during xml generation to configure definition of the feed:
+
+```js
+var xml = xmlSchema.generate(data, {
+    // xml version to append in the header
+    "versions":"1.0",
+
+    // encoding value to append in the header
+    "encoding": "UTF-8",
+
+    "standalone": false,
+
+    // If true, it will return a pretty xml string
+    "pretty": true
+})
+```
+
+### Example to generate an ATOM feed
 
 Define the JavaScript schemas for the ATOM feed:
 
@@ -90,115 +175,57 @@ var FEED = {
 };
 ```
 
+Initialize your XML schema processor:
+
+```js
+var xmlSchema = new XMLSchema(FEED);
+```
+
 Convert JSON into XML based on the previously defined schema:
 
 ```js
-var xml = xmlSchema.create(
-    // Schema to use for the xml
-    FEED,
-
-    // Data to process
-    {
-        title: "Example Feed",
-        links: [
-            {
-                href: "http://example.org/feed/",
-                ref: "self"
-            },
-            "http://example.org/"
-        ],
-        entries: [
-            {
-                title: "Atom-Powered Robots Run Amok",
-                updated: new Date(2015, 01, 15),
-                links: [
-                    "http://example.org/2003/12/13/atom03",
-                    {
-                        rel: "alternate",
-                        type: "text/html",
-                        href: "http://example.org/2003/12/13/atom03.html"
-                    },
-                    {
-                        rel: "edit",
-                        href: "http://example.org/2003/12/13/atom03/edit"
-                    }
-                ],
-                author: {
-                    name: "John Doe",
-                    email: "johndoe@example.com"
+var xml = xmlSchema.generate({
+    title: "Example Feed",
+    links: [
+        {
+            href: "http://example.org/feed/",
+            ref: "self"
+        },
+        "http://example.org/"
+    ],
+    entries: [
+        {
+            title: "Atom-Powered Robots Run Amok",
+            updated: new Date(2015, 01, 15),
+            links: [
+                "http://example.org/2003/12/13/atom03",
+                {
+                    rel: "alternate",
+                    type: "text/html",
+                    href: "http://example.org/2003/12/13/atom03.html"
                 },
-                content: "<p>This is the entry content.</p>"
-            }
-        ]
-    },
-    // Options for xmlSchema
-    {
-        version: '1.0',
-        encoding: 'UTF-8'
-    }
-);
-```
-
-### Options for schemas
-
-```js
-{
-    // Name of the element tag
-    // If null, it will use the name of the fields
-    tag: "myTag",
-
-    // Use sub-value as text/raw node (default is undefined)
-    inner: undefined,
-
-    // Map of sub-elements defined by schema
-    fields: {
-        // Key can be the path of the property to get (eg: "a[0].b.c")
-        // If "$", then the value is the one passed to the schema
-        "key": anotherSchema
-    },
-
-    // Map of attributes
-    // It works like "fields", options 'transform', 'default' are also available
-    attributes: {
-        "key2": {
-            name: "attributeName",
-            default: "attributeValue"
+                {
+                    rel: "edit",
+                    href: "http://example.org/2003/12/13/atom03/edit"
+                }
+            ],
+            author: {
+                name: "John Doe",
+                email: "johndoe@example.com"
+            },
+            content: "<p>This is the entry content.</p>"
         }
-    },
-
-    // Map basic value (number, string, boolean) to object for the schema
-    // This is usefull to make it easier to define both simple and complex data set
-    map: {
-        to: "key"
-    },
-
-    // Default value for the schema (default is undefined)
-    default: "some stuff",
-
-    // Transformation function for the value (default is identity)
-    transform: function(v) { return v; },
-
-    // If true, Don't escape value when appened (default is false)
-    raw: false,
-
-    // If true, Append the resulting value as text (default is true)
-    text: true
-}
+    ]
+},
+// Options for generation
+{
+    version: '1.0',
+    encoding: 'UTF-8'
+});
 ```
 
-### Options for `xmlSchema`
+Or parse some xml feed into a JS object:
 
 ```js
-{
-    // xml version to append in the header
-    "versions":"1.0",
-
-    // encoding value to append in the header
-    "encoding": "UTF-8",
-
-    "standalone": false,
-
-    // If true, it will return a pretty xml string
-    "pretty": true
-}
+var data = xmlSchema.parse(xml);
 ```

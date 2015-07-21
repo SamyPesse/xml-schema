@@ -28,6 +28,30 @@ describe('Fields', function() {
         }).should.equal('<?xml version="1.0" encoding="UTF-8" standalone="no"?><basic><test>hello</test></basic>');
     });
 
+    it('should correctly handle "$"', function() {
+        var xmlSchema = new XMLSchema({
+            tag: "basic",
+            fields: {
+                key: {
+                    fields: {
+                        '$': {
+                            tag: "key 2",
+                            attributes: {
+                                message: {}
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        xmlSchema.generate({
+            key: {
+                message: "hello"
+            }
+        }).should.equal('<?xml version="1.0" encoding="UTF-8" standalone="no"?><basic><key><key 2 message="hello"/></key></basic>');
+    });
+
     it('should correctly transform value', function() {
         var xmlSchema = new XMLSchema({
             tag: "basic",

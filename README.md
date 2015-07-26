@@ -79,7 +79,10 @@ var data = xmlSchema.parse(xml);
     text: true,
 
     // If true: parse it as an array
-    array: false
+    array: false,
+
+    // If true: append empty element according to value
+    bool: false
 }
 ```
 

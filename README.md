@@ -78,6 +78,9 @@ var data = xmlSchema.parse(xml);
     // If true, Append the resulting value as text (default is true)
     text: true,
 
+    // If true, Append the resulting value as CDATA
+    cdata: true,
+
     // If true: parse it as an array
     array: false,
 

@@ -1,6 +1,6 @@
 {
     "name": "xml-schema",
-    "version": "2.1.0",
+    "version": "2.2.0",
     "main": "lib/index.js",
     "author": "Samy Pessé <samypesse@gmail.com>",
     "description": "Library to generate/parse XML from JavaScript schemas",

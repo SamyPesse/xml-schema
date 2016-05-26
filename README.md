@@ -96,11 +96,12 @@ Options can be passed during xml generation to configure definition of the feed:
 ```js
 var xml = xmlSchema.generate(data, {
     // xml version to append in the header
-    "versions":"1.0",
+    "version": "1.0",
 
     // encoding value to append in the header
     "encoding": "UTF-8",
 
+    // If null, omits the standalone attribute
     "standalone": false,
 
     // If true, it will return a pretty xml string

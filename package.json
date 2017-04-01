@@ -17,7 +17,7 @@
   "dependencies": {
     "lodash": "^4.17.4",
     "xml-parser": "1.2.1",
-    "xmlbuilder": "2.4.5"
+    "xmlbuilder": "^8.2.2"
   },
   "devDependencies": {
     "mocha": "^3.2.0",

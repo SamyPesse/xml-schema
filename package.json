@@ -1,29 +1,33 @@
 {
-    "name": "xml-schema",
-    "version": "2.2.0",
-    "main": "lib/index.js",
-    "author": "Samy Pessé <samypesse@gmail.com>",
-    "description": "Library to generate/parse XML from JavaScript schemas",
-    "bugs": "https://github.com/SamyPesse/xml-schema/issues",
-    "license": "Apache-2.0",
-    "keywords": ["xml", "schema", "atom"],
-    "engines": {
-        "node": ">=0.6"
-    },
-    "dependencies": {
-        "lodash": "^3.9.3",
-        "xmlbuilder": "2.4.5",
-        "xml-parser": "1.2.1"
-    },
-    "devDependencies": {
-        "mocha": "2.2.1",
-        "should": "5.2.0"
-    },
-    "scripts": {
-        "test": "node_modules/.bin/mocha --reporter spec --timeout 15000"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/SamyPesse/xml-schema.git"
-    }
+  "name": "xml-schema",
+  "version": "2.2.0",
+  "main": "lib/index.js",
+  "author": "Samy Pessé <samypesse@gmail.com>",
+  "description": "Library to generate/parse XML from JavaScript schemas",
+  "bugs": "https://github.com/SamyPesse/xml-schema/issues",
+  "license": "Apache-2.0",
+  "keywords": [
+    "xml",
+    "schema",
+    "atom"
+  ],
+  "engines": {
+    "node": ">=0.6"
+  },
+  "dependencies": {
+    "lodash": "^3.9.3",
+    "xml-parser": "1.2.1",
+    "xmlbuilder": "2.4.5"
+  },
+  "devDependencies": {
+    "mocha": "^3.2.0",
+    "should": "^11.2.1"
+  },
+  "scripts": {
+    "test": "node_modules/.bin/mocha --reporter spec --timeout 15000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SamyPesse/xml-schema.git"
+  }
 }

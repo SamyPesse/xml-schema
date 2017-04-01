@@ -1,3 +1,4 @@
+var XMLSchema = require('../');
 
 describe('Basic', function() {
     var xmlSchema = new XMLSchema({

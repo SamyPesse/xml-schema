@@ -1,3 +1,4 @@
+var XMLSchema = require('../');
 
 describe('Attributes', function() {
     it('should correctly append attributes', function() {

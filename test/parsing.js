@@ -1,3 +1,4 @@
+var XMLSchema = require('../');
 
 describe('Parsing', function() {
     describe('Attrbiutes', function() {

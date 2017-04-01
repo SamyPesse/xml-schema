@@ -1,3 +1,4 @@
+var XMLSchema = require('../');
 
 describe('Fields', function() {
     it('should correctly append children', function() {
